@@ -77,5 +77,15 @@ indent_style = space
   }
 ```
 
-3. Setting up Public Folder for Serving Static Files
-# photo-sharing
+3. Setting up Public Folder for Serving Static Files & template engine
+
+```js
+app.use(express.static(__dirname + '/public'))
+// or try to log __dirname see where it leads to
+
+//Template engine
+import path from 'path'
+
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, '/views'))
+```
