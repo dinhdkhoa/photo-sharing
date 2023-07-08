@@ -1,17 +1,27 @@
-// getting-started.js
-import mongoose from 'mongoose'
+import { Sequelize } from 'sequelize'
+import express from 'express'
+import { modelInit } from './modelInit'
 
-// connectMongo().catch((err) => console.log(err))
+const sqlPort = 3306 //default mariadb Port
+const app: express.Application = express()
 
-function connectMongo() {
-  mongoose.connect('mongodb://127.0.0.1:27017/f8_edu_dev')
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-  mongoose.connection.on('connected', function () {
-    console.log('DB Connected')
-  })
-  mongoose.connection.on('error', function (err) {
-    console.log('Mongoose default connection has occured ' + err + ' error')
-  })
+export const sequelize = new Sequelize('photos', 'root', '', {
+  dialect: 'mariadb',
+  host: 'localhost',
+  logging: false
+})
+
+const connect = async () => {
+  try {
+    await modelInit()
+    await sequelize.sync()
+
+    app.listen(sqlPort, () => {
+      console.log(`MariaDB Connection has been established successfully to http://localhost:${sqlPort}.`)
+    })
+  } catch (error) {
+    console.error('Unable to connect to the database:', error)
+  }
 }
 
-export default connectMongo
+export default connect

@@ -1,7 +1,7 @@
-import { createUser, getUsersByEmail } from './../db/models/user.model'
+import { createUser, getUsersByEmail } from '../db/models/photos.model'
 import { Request, Response } from 'express'
 import { authentication, random } from './../helpers'
-import { User } from 'types/user'
+import { User } from 'types/user.type'
 
 export const authController = {
   register: async (req: Request, res: Response) => {

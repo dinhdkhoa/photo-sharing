@@ -1,6 +1,6 @@
-import { deleteUserById, getUsers, updateUserById } from './../db/models/user.model'
+import { deleteUserById, getUsers, updateUserById } from '../db/models/photos.model'
 import { Request, Response } from 'express'
-import { User } from 'types/user'
+import { User } from 'types/user.type'
 
 export const userController = {
   getAllUsers: async (req: Request, res: Response) => {
