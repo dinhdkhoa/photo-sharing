@@ -1,39 +1,23 @@
-import { deleteUserById, getUsers, updateUserById } from '../db/models/photos.model'
+import { UsersModel } from 'db/models/user.model'
 import { Request, Response } from 'express'
-import { User } from 'types/user.type'
+import { UserAttributes } from 'types/user.type'
 
 export const userController = {
-  getAllUsers: async (req: Request, res: Response) => {
-    try {
-      const users = await getUsers()
-      if (!users) return res.sendStatus(500)
-      return res.status(200).json(users)
-    } catch (error) {
-      console.log(error)
-      return res.sendStatus(400)
-    }
+  loginPost: (req: Request, res: Response) => {
+    const { username, password } = req.body
+    UsersModel.findOne({ where: { username, password } })
+      .then((user) => res.send(user))
+      .catch((err) => {
+        res.send("You don't have an account. Try signing up!")
+      })
   },
-  deleteUser: async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params
-      await deleteUserById(id)
-      return res.status(200).send(`User ${id} deleted`)
-    } catch (error) {
-      console.log(error)
-      return res.sendStatus(400)
-    }
-  },
-  updateUsername: async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params
-      const { username } = req.body
-      if (!username) return res.sendStatus(400)
-      const updateUser = await updateUserById(id, username)
-      if (!updateUser) return res.sendStatus(500)
-      return res.status(200).send(`User ${updateUser.username} changed name to ${username}`)
-    } catch (error) {
-      console.log(error)
-      return res.sendStatus(400)
-    }
+  signupPost: (req: Request, res: Response) => {
+    const { username, password, email } = req.body
+    const mediaLocation = (req.file as Express.Multer.File).filename
+    UsersModel.create({ username, password, email })
+      .then((user) => res.send(user))
+      .catch((error) => {
+        res.send(error)
+      })
   }
 }

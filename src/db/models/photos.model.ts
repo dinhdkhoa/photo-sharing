@@ -1,8 +1,10 @@
 import { sequelize } from '../index'
-import { Model, DataTypes } from 'sequelize'
+import { Model, DataTypes, Optional } from 'sequelize'
 import { PhotoAttributes } from 'types/photo.type'
 
-class PhotosModel extends Model<PhotoAttributes> {}
+type PhotoCreationAttributes = Optional<PhotoAttributes, 'id' | 'userId' | 'slug' | 'description'>
+
+export class PhotosModel extends Model<PhotoAttributes, PhotoCreationAttributes> {}
 
 export const PhotosModelInit = () =>
   PhotosModel.init(

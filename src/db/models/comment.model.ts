@@ -2,7 +2,7 @@ import { sequelize } from '../index'
 import { Model, DataTypes } from 'sequelize'
 import { CommentAttributes } from 'types/comment.type'
 
-class CommentsModel extends Model<CommentAttributes> {}
+export class CommentsModel extends Model<CommentAttributes> {}
 
 export const CommentsModelInit = () =>
   CommentsModel.init(

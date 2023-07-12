@@ -1,9 +1,8 @@
-import { userController } from '../controllers/user.controller'
+import { photoController, upload } from '../controllers/photo.controller'
 import { Router } from 'express'
-import { isAuthenticated, isOwner } from '../middleware/auth'
 
 const photoRouter = Router()
 
-photoRouter.route('/').get(isAuthenticated, userController.getAllUsers)
+photoRouter.route('/').get(photoController.getPhotos).post(upload.single('photos'), photoController.postPhotos)
 
 export default photoRouter

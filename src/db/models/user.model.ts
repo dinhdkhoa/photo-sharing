@@ -1,8 +1,10 @@
 import { sequelize } from '../index'
-import { Model, DataTypes } from 'sequelize'
+import { Model, DataTypes, Optional } from 'sequelize'
 import { UserAttributes } from 'types/user.type'
 
-class UsersModel extends Model<UserAttributes> {}
+type UserCreationAttributes = Optional<UserAttributes, 'id'>
+
+export class UsersModel extends Model<UserAttributes, UserCreationAttributes> {}
 
 export const UserModelInit = () =>
   UsersModel.init(

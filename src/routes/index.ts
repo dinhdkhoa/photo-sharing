@@ -5,8 +5,8 @@ import photoRouter from './photoRouter'
 
 const routes = Router()
 
-routes.use('/comment', commentRouter)
-routes.use('/photo', photoRouter)
-routes.use('/user', userRouter)
+routes.use('/comments', commentRouter)
+routes.use('/photos', photoRouter)
+routes.use('/users', userRouter)
 
 export default routes
