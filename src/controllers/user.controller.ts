@@ -1,10 +1,10 @@
-import { UsersModel } from 'db/models/user.model'
+import { UserCreationAttributes, UsersModel } from 'db/models/user.model'
 import { Request, Response } from 'express'
 import { UserAttributes } from 'types/user.type'
 
 export const userController = {
   loginPost: (req: Request, res: Response) => {
-    const { username, password } = req.body
+    const { username, password }: UserCreationAttributes = req.body
     UsersModel.findOne({ where: { username, password } })
       .then((user) => res.send(user))
       .catch((err) => {
@@ -12,8 +12,7 @@ export const userController = {
       })
   },
   signupPost: (req: Request, res: Response) => {
-    const { username, password, email } = req.body
-    const mediaLocation = (req.file as Express.Multer.File).filename
+    const { username, password, email }: UserCreationAttributes = req.body
     UsersModel.create({ username, password, email })
       .then((user) => res.send(user))
       .catch((error) => {

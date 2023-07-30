@@ -1,7 +1,9 @@
-import { userController } from '../controllers/user.controller'
 import { Router } from 'express'
-import { isAuthenticated, isOwner } from '../middleware/auth'
+import { CommentController } from 'controllers/auth.controller'
 
 const commentRouter = Router()
+
+commentRouter.route('/').post(CommentController.postComment)
+commentRouter.route('/:id').post(CommentController.postComment)
 
 export default commentRouter

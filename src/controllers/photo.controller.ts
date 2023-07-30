@@ -13,7 +13,8 @@ export const photoController = {
   },
   postPhotos: (req: Request, res: Response) => {
     const { title } = req.body
-    const mediaLocation = (req.file as Express.Multer.File).filename
+    const mediaLocation = req.file?.filename
+    if (!mediaLocation) return res.sendStatus(400)
     PhotosModel.create({ title: title, mediaLocation: mediaLocation })
       .then((photo) => {
         console.log('POST IMAGES')

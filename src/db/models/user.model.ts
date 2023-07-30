@@ -2,7 +2,7 @@ import { sequelize } from '../index'
 import { Model, DataTypes, Optional } from 'sequelize'
 import { UserAttributes } from 'types/user.type'
 
-type UserCreationAttributes = Optional<UserAttributes, 'id'>
+export type UserCreationAttributes = Optional<UserAttributes, 'id'>
 
 export class UsersModel extends Model<UserAttributes, UserCreationAttributes> {}
 
