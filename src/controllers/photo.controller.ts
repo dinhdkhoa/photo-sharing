@@ -1,4 +1,4 @@
-import { PhotosModel } from 'db/models/photos.model'
+import { PhotosModel } from '../db/models/photos.model'
 import { Request, Response } from 'express'
 import multer from 'multer'
 

@@ -1,4 +1,4 @@
-import { UserCreationAttributes, UsersModel } from 'db/models/user.model'
+import { UserCreationAttributes, UsersModel } from '../db/models/user.model'
 import { Request, Response } from 'express'
 import { UserAttributes } from 'types/user.type'
 

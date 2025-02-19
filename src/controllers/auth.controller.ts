@@ -1,4 +1,4 @@
-import { CommentCreationAttributes, CommentsModel } from 'db/models/comment.model'
+import { CommentCreationAttributes, CommentsModel } from '../db/models/comment.model'
 import { Request, Response } from 'express'
 
 export const CommentController = {

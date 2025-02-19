@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { CommentController } from 'controllers/auth.controller'
+import { CommentController } from '../controllers/auth.controller'
 
 const commentRouter = Router()
 
